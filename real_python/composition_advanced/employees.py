@@ -2,26 +2,8 @@ from productivity import ProductivitySystem
 from hr import PayrollSystem
 from contacts import AddressBook
 
-
-class Employee:
-    def __init__(self, id, name, address, role, payroll):
-        self.id = id
-        self.name = name
-        self.address = address
-        self.role = role
-        self.payroll = payroll
-
-    def work(self, hours):
-        duties = self.role.perform_duties(hours)
-        print(f'Employee {self.id} - {self.name}:')
-        print(f'- {duties}')
-        print('')
-        self.payroll.track_work(hours)
-
-    def calculate_payroll(self):
-        return self.payroll.calculate_payroll()
-
 class EmployeeDatabase:
+
     def __init__(self):
         self._employees = [
             {
@@ -48,7 +30,7 @@ class EmployeeDatabase:
                 'id': 5,
                 'name': 'Robin Williams',
                 'role': 'secretary'
-            },
+            }
         ]
         self.productivity = ProductivitySystem()
         self.payroll = PayrollSystem()
@@ -63,3 +45,21 @@ class EmployeeDatabase:
         employee_role = self.productivity.get_role(role)
         payroll_policy = self.payroll.get_policy(id)
         return Employee(id, name, address, employee_role, payroll_policy)
+
+class Employee:
+    def __init__(self, id, name, address, role, payroll):
+        self.id = id
+        self.name = name
+        self.address = address
+        self.role = role
+        self.payroll = payroll
+
+    def work(self, hours):
+        duties = self.role.perform_duties(hours)
+        print(f'Employee {self.id} - {self.name}:')
+        print(f'- {duties}')
+        print('')
+        self.payroll.track_work(hours)
+
+    def calculate_payroll(self):
+        return self.payroll.calculate_payroll()

@@ -5,11 +5,9 @@ Very advanced Employee management system.
 from abc import ABC, abstractmethod
 from dataclasses import dataclass
 
-
 @dataclass
 class Employee(ABC):
     """Basic representation of an employee at the company."""
-
     name: str
     id: int
 
@@ -106,14 +104,3 @@ if __name__ == "__main__":
     main()
 
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/

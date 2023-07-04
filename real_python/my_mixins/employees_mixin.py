@@ -1,11 +1,12 @@
-class Employee:
+from representation import AsDictionaryMixin
+
+class Employee(AsDictionaryMixin):
     def __init__(self, id, name, address, role, payroll):
         self.id = id
         self.name = name
         self.address = address
         self._role = role
         self._payroll = payroll
-
 
     def work(self, hours):
         duties = self._role.perform_duties(hours)

@@ -1,4 +1,4 @@
-class _PayrollSystem:
+class PayrollSystem:
     def __init__(self):
         self._employee_policies = {
             1: SalaryPolicy(3000),
@@ -7,7 +7,6 @@ class _PayrollSystem:
             4: HourlyPolicy(15),
             5: HourlyPolicy(9)
         }
-
     def get_policy(self, employee_id):
         policy = self._employee_policies.get(employee_id)
         if not policy:
@@ -19,13 +18,15 @@ class _PayrollSystem:
         print('===================')
         for employee in employees:
             print(f'Payroll for: {employee.id} - {employee.name}')
+            employee_policy = self.get_policy(employee.id)
+            employee_policy.track_work(employee.hours_worked)  # Track the hours worked
             print(f'- Check amount: {employee.calculate_payroll()}')
             if employee.address:
                 print('- Sent to:')
                 print(employee.address)
             print('')
 
-# Policy classes implementation omitted
+
 class PayrollPolicy:
     def __init__(self):
         self.hours_worked = 0
@@ -62,10 +63,3 @@ class CommissionPolicy(SalaryPolicy):
     def calculate_payroll(self):
         fixed = super().calculate_payroll()
         return fixed + self.commission
-_payroll_system = _PayrollSystem()
-
-def get_policy(employee_id):
-    return _payroll_system.get_policy(employee_id)
-
-def calculate_payroll(employees):
-    _payroll_system.calculate_payroll(employees)
