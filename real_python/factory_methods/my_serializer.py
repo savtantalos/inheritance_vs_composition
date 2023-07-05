@@ -1,18 +1,20 @@
+import sys
+sys.path.append('/Users/savvastantalidis/python/inheritance_vs_composition')
 import json
 import xml.etree.ElementTree as et
-from spotify.my_song import Song
+from real_python.factory_methods.song import Song
 from abc import ABC, abstractmethod
 
 
-class Serializer:
+class Serializer(ABC):
 
     @abstractmethod
     def start_object(self, object_name, object_id):
         """initiate the obect which we will serialize"""
-
+    @abstractmethod
     def add_element(self, element, value):
         """will add a key:element and its related value:value"""
-
+    @abstractmethod
     def to_str(self):
         """will output the format that we want"""
 
